@@ -9,3 +9,6 @@ export const setLoadingPage = (state, data) => {
 export const setMsgHandler = (state, data) => {
   state.messageHandler = data;
 }
+export const setCancelSvData = (state, data) => {
+  state.cancelSvData = data;
+}

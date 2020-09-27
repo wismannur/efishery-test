@@ -4,3 +4,6 @@ export const getLoadingPage = (state) => {
 export const getMsgHandler = (state) => {
   return state.messageHandler;
 }
+export const getCancelSvData = (state) => {
+  return state.cancelSvData;
+}

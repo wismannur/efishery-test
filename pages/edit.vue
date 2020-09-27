@@ -146,7 +146,8 @@ const SteinStore = require("stein-js-client");
 
 export default {
   name: 'add',
-  components: {},
+  components: {
+  },
   data() {
     return {
       body: {
@@ -288,7 +289,7 @@ export default {
       this.disabledKota = true;
     },
     cancelSave() {
-
+      this.$gf().cancelSvData().show();
     },
     saveData() {
       console.log('data body ', this.body);

@@ -5,6 +5,7 @@ export default function () {
       show: false,
       title: '',
       text: '',
-    }
+    },
+    cancelSvData: false,
   }
 }

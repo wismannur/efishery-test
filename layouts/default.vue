@@ -91,6 +91,7 @@
     <LoadingPage />
     <no-ssr>
       <MessageHandler />
+      <CancelSaveData />
     </no-ssr>
   </v-app>
 </template>
@@ -99,12 +100,14 @@
 import ColorModePicker from '~/components/ColorModePicker';
 import LoadingPage from '~/components/LoadingPage';
 import MessageHandler from '~/components/MessageHandler';
+import CancelSaveData from '~/components/CancelSaveData';
 
 export default {
   components: {
     ColorModePicker,
     LoadingPage,
     MessageHandler,
+    CancelSaveData,
   },
   data () {
     return {

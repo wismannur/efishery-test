@@ -62,6 +62,16 @@ export default (context, inject) => {
             window.$nuxt.$store.commit('setLoadingPage', false);
           }
         }
+      },
+      cancelSvData() {
+        return {
+          show() {
+            window.$nuxt.$store.commit('setCancelSvData', true);
+          },
+          hide() {
+            window.$nuxt.$store.commit('setCancelSvData', false);
+          }
+        }
       }
     }
   }
