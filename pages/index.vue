@@ -11,6 +11,12 @@
           hide-details
         ></v-text-field>
         <v-spacer></v-spacer>
+        <v-btn
+          color="green"
+          dark
+          class="mb-2"
+          @click="$router.push('/add')"
+        >Tambah Data</v-btn>
       </v-card-title>
       <v-data-table
         :headers="headers"
@@ -18,7 +24,24 @@
         :search="search"
         :loading="loadingListData"
         loading-text="Loading... Please wait"
-      ></v-data-table>
+      >
+        <template v-slot:[`item.actions`]="{ item }">
+          <v-icon
+            class="mr-2"
+            title="Ubah Data"
+            @click="editItem(item)"
+          >
+            mdi-pencil
+          </v-icon>
+          <v-icon
+            title="Hapus Data"
+            @click="deleteItem(item)"
+            color="error"
+          >
+            mdi-delete
+          </v-icon>
+        </template>
+      </v-data-table>
     </v-card>
   </div>
 </template>
@@ -45,6 +68,7 @@ export default {
         //   sortable: false,
         //   value: 'name',
         // },
+        { text: 'Actions', value: 'actions' },
         { text: 'Komoditas', value: 'komoditas' },
         { text: 'Provinsi', value: 'area_provinsi' },
         { text: 'Kota', value: 'area_kota' },
@@ -89,6 +113,12 @@ export default {
           return obj;
         })
       });
+    },
+    editItem(item) {
+
+    },
+    deleteItem(item) {
+
     }
   },
   mounted() {

@@ -69,13 +69,15 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          success: colors.green.accent3,
+          green: colors.green.accent1,
         },
         light: {
-          primary: colors.purple,
+          primary: colors.green.base,
           secondary: colors.grey.darken1,
           accent: colors.shades.black,
           error: colors.red.accent3,
+          green: colors.green.accent1,
         },
       }
     }
