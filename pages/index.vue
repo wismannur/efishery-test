@@ -6,15 +6,16 @@
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Search"
+          label="Cari Data"
           single-line
           hide-details
         ></v-text-field>
         <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
         <v-btn
           color="green"
-          dark
           class="mb-2"
+          outlined
           @click="$router.push('/add')"
         >Tambah Data</v-btn>
       </v-card-title>
@@ -23,13 +24,14 @@
         :items="desserts"
         :search="search"
         :loading="loadingListData"
-        loading-text="Loading... Please wait"
+        loading-text="Sedang Memuat Data..."
       >
         <template v-slot:[`item.actions`]="{ item }">
           <v-icon
             class="mr-2"
             title="Ubah Data"
             @click="editItem(item)"
+            color="warning"
           >
             mdi-pencil
           </v-icon>
@@ -104,14 +106,14 @@ export default {
             area_kota: this.$gf().checkTrimText(e.area_kota),
             area_provinsi: this.$gf().checkTrimText(e.area_provinsi),
             komoditas: this.$gf().checkTrimText(e.komoditas),
-            price: this.$gf().checkTrimText(e.price),
+            price: this.$gf().convertToCurrency(this.$gf().checkTrimText(e.price) == '-' ? '0' : parseInt((this.$gf().checkTrimText(e.price)).split('.').join('')), 'Rp. '),
             size: this.$gf().checkTrimText(e.size),
             tgl_parsed: moment(this.$gf().checkTrimText(e.tgl_parsed)).format('DD-MMM-YYYY'),
             timestamp: this.$gf().checkTrimText(e.timestamp),
             uuid: this.$gf().checkTrimText(e.uuid),
           };
           return obj;
-        })
+        }).reverse();
       });
     },
     editItem(item) {

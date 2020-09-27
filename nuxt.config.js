@@ -28,7 +28,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: '~/plugins/api-config.js' },
-    { src: '~/plugins/global-functions.js', mode: 'client' },
+    { src: '~/plugins/global-functions.js' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -70,14 +70,14 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          green: colors.green.accent1,
+          green: colors.green.darken1,
         },
         light: {
           primary: colors.green.base,
           secondary: colors.grey.darken1,
           accent: colors.shades.black,
           error: colors.red.accent3,
-          green: colors.green.accent1,
+          green: colors.green.darken1,
         },
       }
     }

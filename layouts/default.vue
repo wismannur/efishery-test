@@ -88,15 +88,18 @@
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    <LoadingPage />
   </v-app>
 </template>
 
 <script>
 import ColorModePicker from '~/components/ColorModePicker';
+import LoadingPage from '~/components/LoadingPage';
 
 export default {
   components: {
     ColorModePicker,
+    LoadingPage,
   },
   data () {
     return {
