@@ -161,7 +161,7 @@ export default {
         timestamp: this.$gf().getTimestamp()
       },
       rules: {
-        komoditas: [val => (val || '').length > 0 || 'This field is required'],
+        komoditas: [val => (val || '').length > 0 || 'Field ini tidak boleh kosong.'],
       },
       date: '',
       modal: false,

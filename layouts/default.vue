@@ -30,12 +30,12 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
+      <!-- <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
+      </v-btn> -->
       <!-- <v-btn
         icon
         @click.stop="clipped = !clipped"
@@ -127,7 +127,7 @@ export default {
         },
         {
           icon: 'mdi-home-city',
-          title: 'List Provinsi/Kota',
+          title: 'List Provinsi & Kota',
           to: '/list-provinsi-kota'
         }
       ],
