@@ -143,10 +143,14 @@ export default {
       });
     },
     editItem(item) {
-      window.$nuxt.$cookies.set("dataEdit", item);
+      let obj = {
+        province: item.province,
+        city: item.city
+      };
+      window.$nuxt.$cookies.set("dataEditProvince", obj);
       this.$gf().loadingPage().show();
       setTimeout(() => {
-        this.$router.push('/list-ikan/edit');
+        this.$router.push('/list-provinsi-kota/edit');
       }, 1000);
     },
     deleteItem(item) {

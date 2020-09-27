@@ -174,23 +174,23 @@ export default {
       loadingListKota: false,
       disabledKota: true,
       dialogSaveData: false,
-      dataEdit: {},
+      dataEditIkan: {},
     }
   },
   methods: {
     init() {
       this.getListUkuran();
       this.getListArea();
-      this.getDataEdit();
+      this.getdataEditIkan();
     },
-    getDataEdit() {
-      let dataEdit = window.$nuxt.$cookies.get('dataEdit');
-      this.dataEdit = window.$nuxt.$cookies.get('dataEdit');
-      if ( dataEdit === undefined ) {
-        this.$router.push("/");
+    getdataEditIkan() {
+      let dataEditIkan = window.$nuxt.$cookies.get('dataEditIkan');
+      this.dataEditIkan = window.$nuxt.$cookies.get('dataEditIkan');
+      if ( dataEditIkan === undefined ) {
+        this.$router.push("/list-ikan");
       } else {
-        this.body = dataEdit;
-        this.date = moment(dataEdit.tgl_parsed).format('YYYY-MM-DD');
+        this.body = dataEditIkan;
+        this.date = moment(dataEditIkan.tgl_parsed).format('YYYY-MM-DD');
         this.changeKota();
       }
       this.$gf().loadingPage().hide();
@@ -236,8 +236,8 @@ export default {
         });
         setTimeout(() => {
           this.handleKota();
-          this.body.area_kota = this.dataEdit.area_kota;
-          console.log('data edit ', this.dataEdit)
+          this.body.area_kota = this.dataEditIkan.area_kota;
+          console.log('data edit ', this.dataEditIkan)
         }, 500);
       });
     },
@@ -307,7 +307,7 @@ export default {
       .then((res) => {
         this.$gf().loadingPage().hide();
         this.dialogSaveData = true;
-        window.$nuxt.$cookies.remove('dataEdit');
+        window.$nuxt.$cookies.remove('dataEditIkan');
         console.log('Success Updated Data' + res);
       });
     }

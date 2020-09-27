@@ -160,7 +160,7 @@ export default {
       });
     },
     editItem(item) {
-      window.$nuxt.$cookies.set("dataEdit", item);
+      window.$nuxt.$cookies.set("dataEditIkan", item);
       this.$gf().loadingPage().show();
       setTimeout(() => {
         this.$router.push('/list-ikan/edit');

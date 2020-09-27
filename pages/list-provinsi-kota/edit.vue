@@ -17,6 +17,7 @@
               :rules="rules.province"
               required
               class="text-uppercase"
+              :disabled="!changeProvinsi"
               v-on:keyup="textUpper('province')"
             ></v-text-field>
           </v-col>
@@ -35,7 +36,7 @@
               v-model="body.province"
               label="Provinsi"
               prepend-inner-icon="mdi-map-marker"
-              v-on:keyup="textUpper('province')"
+              :disabled="!changeProvinsi"
             ></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6" md="6">
@@ -44,7 +45,8 @@
               v-model="body.city"
               label="Kota"
               outlined
-              v-on:keyup="textUpper('city')"
+              v-on:keyup="textUpper('city');"
+              :disabled="changeProvinsi"
             ></v-text-field>
           </v-col>
           <v-col cols="12" sm="6" md="6" class="use-existing-province">
@@ -52,6 +54,11 @@
               v-model="existingProvince"
               @click="body.province = ''"
               label="Gunakan Data Provinsi yang sudah ada."
+              :disabled="!changeProvinsi"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="changeProvinsi"
+              label="Ubah Data Provinsi"
             ></v-checkbox>
           </v-col>
         </v-row>
@@ -65,7 +72,7 @@
             outlined
             @click="saveData();"
             :disabled="body.province === ''"
-          >Simpan</v-btn>
+          >Perbarui</v-btn>
         </v-card-actions>
       </v-container>
     </v-card>
@@ -81,7 +88,7 @@
           </v-card-title>
 
           <v-card-text class="text-center">
-            Data Berhasil Tersimpan.
+            Data Berhasil di Perbarui.
           </v-card-text>
 
           <v-card-actions class="display-flex justify-center">
@@ -130,11 +137,24 @@ export default {
       disabledKota: true,
       dialogSaveData: false,
       existingProvince: false,
+      dataEditProvince: {},
+      changeProvinsi: false,
     }
   },
   methods: {
     init() {
       this.getListArea();
+      this.getdataEditProvince();
+    },
+    getdataEditProvince() {
+      let dataEditProvince = window.$nuxt.$cookies.get('dataEditProvince');
+      this.dataEditProvince = window.$nuxt.$cookies.get('dataEditProvince');
+      if ( dataEditProvince === undefined ) {
+        this.$router.push("/list-provinsi-kota");
+      } else {
+        this.body = dataEditProvince;
+      }
+      this.$gf().loadingPage().hide();
     },
     getListArea() {
       const store = new SteinStore(
@@ -188,11 +208,20 @@ export default {
         this.$api().optionArea()
       );
 
-      store.append("", [ this.body ])
+      let obj = {
+        province: this.dataEditProvince.province,
+        city: this.dataEditProvince.city === '-' ? null : this.dataEditProvince.city
+      }
+
+      store.edit("", {
+        search: obj,
+        set: this.body
+      })
       .then((res) => {
         this.$gf().loadingPage().hide();
         this.dialogSaveData = true;
-        console.log('Success Saved Data' + res);
+        window.$nuxt.$cookies.remove('dataEditIkan');
+        console.log('Success Updated Data' + res);
       });
     }
   },
