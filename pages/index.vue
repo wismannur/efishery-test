@@ -64,21 +64,10 @@ export default {
         this.$api().list()
       );
 
-      store.read("").then(data => {
+      store.read("").then((data) => {
         // console.log('SteinStore', data);
         this.loadingListData = false;
         this.desserts = data.filter((e) => {
-          let obj = {
-            area_kota: e.area_kota,
-            area_provinsi: e.area_provinsi,
-            komoditas: e.komoditas,
-            price: e.price,
-            size: e.size,
-            tgl_parsed: moment(e.tgl_parsed).format('DD-MMM-YYYY'),
-            timestamp: e.timestamp,
-            uuid: e.uuid,
-          };
-
           if ( e.uuid == null ) {
             console.log('data null ', e);
           } else if (moment(e.tgl_parsed).format('DD-MMM-YYYY') == "Invalid date") {
@@ -86,7 +75,19 @@ export default {
           } else {
             return e;
           }
-        });
+        }).map((e) => {
+          let obj = {
+            area_kota: this.$gf().checkTrimText(e.area_kota),
+            area_provinsi: this.$gf().checkTrimText(e.area_provinsi),
+            komoditas: this.$gf().checkTrimText(e.komoditas),
+            price: this.$gf().checkTrimText(e.price),
+            size: this.$gf().checkTrimText(e.size),
+            tgl_parsed: moment(this.$gf().checkTrimText(e.tgl_parsed)).format('DD-MMM-YYYY'),
+            timestamp: this.$gf().checkTrimText(e.timestamp),
+            uuid: this.$gf().checkTrimText(e.uuid),
+          };
+          return obj;
+        })
       });
     }
   },
