@@ -97,7 +97,7 @@
           <v-btn
             color="green"
             outlined
-            @click="saveData(); dialogSaveData = true;"
+            @click="saveData();"
             :disabled="body.komoditas === ''"
           >Simpan</v-btn>
         </v-card-actions>
@@ -268,19 +268,20 @@ export default {
 
     },
     saveData() {
-      // this.$store.commit('setLoadingPage', true);
-      // this.body.tgl_parsed = this.date;
-      // console.log('data body ', this.body);
+      this.$store.commit('setLoadingPage', true);
+      this.body.tgl_parsed = this.date;
+      console.log('data body ', this.body);
 
-      // const store = new SteinStore(
-      //   this.$api().list()
-      // );
+      const store = new SteinStore(
+        this.$api().list()
+      );
 
-      // store.append("", [ this.body ])
-      // .then((res) => {
-      //   this.$store.commit('setLoadingPage', true);
-      //   console.log('Success Saved Data' + res);
-      // });
+      store.append("", [ this.body ])
+      .then((res) => {
+        this.$store.commit('setLoadingPage', false);
+        this.dialogSaveData = true;
+        console.log('Success Saved Data' + res);
+      });
     }
   },
   mounted() {

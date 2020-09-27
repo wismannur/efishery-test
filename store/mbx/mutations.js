@@ -6,3 +6,6 @@ export const setCookies = (state) => {
 export const setLoadingPage = (state, data) => {
   state.loadingPage = data;
 }
+export const setMsgHandler = (state, data) => {
+  state.messageHandler = data;
+}

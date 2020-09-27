@@ -30,6 +30,29 @@ export default (context, inject) => {
           return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
         });
       },
+      msgHdlrCond() {
+        let data = window.$nuxt.$store.getters['getMsgHandler'];
+        return data;
+      },
+      msgHandler() {
+        let obj = {
+          show: false,
+          title: '',
+          text: '',
+        }
+        return {
+          show(title, text) {
+            obj.show = true;
+            obj.title = title;
+            obj.text = text;
+            window.$nuxt.$store.commit('setMsgHandler', obj);
+          },
+          hide() {
+            obj.show = false;
+            window.$nuxt.$store.commit('setMsgHandler', obj);
+          }
+        }
+      }
     }
   }
   inject('gf', gf);

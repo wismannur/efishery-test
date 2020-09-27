@@ -45,6 +45,40 @@
         </template>
       </v-data-table>
     </v-card>
+
+    <v-dialog
+      v-model="dialogDeleteData"
+      max-width="400"
+    >
+      <v-card>
+        <v-container>
+          <v-card-title class="headline justify-center">
+            <h3>Hapus Data</h3>
+          </v-card-title>
+
+          <v-card-text class="text-center">
+            Anda Yakin ingin menghapus Data <br> "{{ deleteData.komoditas }}" ?
+          </v-card-text>
+
+          <v-card-actions class="display-flex justify-center">
+            <v-btn
+              color="error"
+              outlined
+              @click="dialogDeleteData = false;"
+            >
+              Batal
+            </v-btn>
+            <v-btn
+              color="green darken-1"
+              outlined
+              @click="dialogDeleteData = false; fixDeleteItem();"
+            >
+              Hapus
+            </v-btn>
+          </v-card-actions>
+        </v-container>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -79,6 +113,10 @@ export default {
         { text: 'Tanggal', value: 'tgl_parsed' },
       ],
       desserts: [],
+      deleteData: {
+        komoditas: ''
+      },
+      dialogDeleteData: false,
     }
   },
   methods: {
@@ -120,7 +158,25 @@ export default {
 
     },
     deleteItem(item) {
+      this.deleteData = item;
+      this.dialogDeleteData = true;
+    },
+    fixDeleteItem() {
+      this.$store.commit('setLoadingPage', true);
+      const store = new SteinStore(
+        this.$api().list()
+      );
 
+      store
+        .delete("", {
+          search: { uuid: this.deleteData.uuid }
+        })
+        .then((res) => {
+          console.log(res);
+          this.$store.commit('setLoadingPage', false);
+          this.$gf().msgHandler().show("Success", "Data Berhasil di Hapus.");
+          this.getListData();
+        });
     }
   },
   mounted() {
