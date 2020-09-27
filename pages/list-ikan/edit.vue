@@ -122,7 +122,7 @@
             <v-btn
               color="green darken-1"
               outlined
-              @click="dialogSaveData = false; $router.push('/add')"
+              @click="dialogSaveData = false; $router.push('/list-ikan/add')"
             >
               Tambah Data Baru
             </v-btn>
