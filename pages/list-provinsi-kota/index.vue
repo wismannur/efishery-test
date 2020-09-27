@@ -20,7 +20,10 @@
             color="green"
             class="mb-2"
             outlined
-          >Tambah Data</v-btn>
+          >
+            <v-icon left>mdi-plus</v-icon>
+            Tambah Data
+          </v-btn>
         </nuxt-link>
       </v-card-title>
       <v-data-table
@@ -29,6 +32,7 @@
         :search="search"
         :loading="loadingListData"
         loading-text="Sedang Memuat Data..."
+        class="table-list-provinsi-kota"
       >
         <template v-slot:[`item.actions`]="{ item }">
           <v-icon
@@ -187,5 +191,11 @@ export default {
 }
 .url-link-ef-tst {
   text-decoration: none;
+  margin-top: 15px;
+}
+@media (max-width: 481px) {
+  .title-index {
+    margin: 5px 0 10px 5px;
+  }
 }
 </style>
