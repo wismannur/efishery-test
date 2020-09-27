@@ -1,6 +1,6 @@
 <template>
   <div class="content-page-add">
-    <h2 class="title-index">Tambah Data Baru.</h2>
+    <h2 class="title-index">Edit Data Ikan.</h2>
     <v-card>
       <v-card-text>
         <v-row>
@@ -99,7 +99,7 @@
             outlined
             @click="saveData();"
             :disabled="body.komoditas === ''"
-          >Simpan</v-btn>
+          >Perbaui</v-btn>
         </v-card-actions>
       </v-container>
     </v-card>
@@ -115,14 +115,14 @@
           </v-card-title>
 
           <v-card-text class="text-center">
-            Data Berhasil Tersimpan.
+            Data Berhasil di Perbarui.
           </v-card-text>
 
           <v-card-actions class="display-flex justify-center">
             <v-btn
               color="green darken-1"
               outlined
-              @click="dialogSaveData = false; resetField();"
+              @click="dialogSaveData = false; $router.push('/add')"
             >
               Tambah Data Baru
             </v-btn>
@@ -141,6 +141,7 @@
 </template>
 
 <script>
+import * as moment from 'moment';
 const SteinStore = require("stein-js-client");
 
 export default {
@@ -172,12 +173,26 @@ export default {
       loadingListKota: false,
       disabledKota: true,
       dialogSaveData: false,
+      dataEdit: {},
     }
   },
   methods: {
     init() {
       this.getListUkuran();
       this.getListArea();
+      this.getDataEdit();
+    },
+    getDataEdit() {
+      let dataEdit = window.$nuxt.$cookies.get('dataEdit');
+      this.dataEdit = window.$nuxt.$cookies.get('dataEdit');
+      if ( dataEdit === undefined ) {
+        this.$router.push("/");
+      } else {
+        this.body = dataEdit;
+        this.date = moment(dataEdit.tgl_parsed).format('YYYY-MM-DD');
+        this.changeKota();
+      }
+      this.$gf().loadingPage().hide();
     },
     getListUkuran() {
       const store = new SteinStore(
@@ -217,7 +232,12 @@ export default {
             abbr: e.province,
           };
           return obj;
-        })
+        });
+        setTimeout(() => {
+          this.handleKota();
+          this.body.area_kota = this.dataEdit.area_kota;
+          console.log('data edit ', this.dataEdit)
+        }, 500);
       });
     },
     customFilter (item, queryText, itemText) {
@@ -228,11 +248,7 @@ export default {
       return textOne.indexOf(searchText) > -1 ||
         textTwo.indexOf(searchText) > -1
     },
-    changeKota() {
-      console.log('body.area_provinsi ', this.body.area_provinsi);
-      this.loadingListKota = true;
-      this.disabledKota = true;
-      this.body.area_kota = "";
+    handleKota() {
       let dataProvinsi = this.body.area_provinsi;
       let listArea = this.listArea;
       this.listKota = listArea.filter((e, i) => {
@@ -251,6 +267,13 @@ export default {
         this.disabledKota = false;
       })
     },
+    changeKota() {
+      console.log('body.area_provinsi ', this.body.area_provinsi);
+      this.loadingListKota = true;
+      this.disabledKota = true;
+      this.body.area_kota = "";
+      this.handleKota();
+    },
     resetField() {
       let body = this.body;
       body.uuid = this.$gf().createUuid();
@@ -268,19 +291,23 @@ export default {
 
     },
     saveData() {
+      console.log('data body ', this.body);
       this.$gf().loadingPage().show();
       this.body.tgl_parsed = this.date;
-      console.log('data body ', this.body);
 
       const store = new SteinStore(
         this.$api().list()
       );
 
-      store.append("", [ this.body ])
+      store.edit("", {
+        search: { uuid: this.body.uuid },
+        set: this.body
+      })
       .then((res) => {
         this.$gf().loadingPage().hide();
         this.dialogSaveData = true;
-        console.log('Success Saved Data' + res);
+        window.$nuxt.$cookies.remove('dataEdit');
+        console.log('Success Updated Data' + res);
       });
     }
   },

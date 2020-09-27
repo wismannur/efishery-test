@@ -108,7 +108,7 @@ export default {
         { text: 'Komoditas', value: 'komoditas' },
         { text: 'Provinsi', value: 'area_provinsi' },
         { text: 'Kota', value: 'area_kota' },
-        { text: 'Harga', value: 'price' },
+        { text: 'Harga', value: 'price_parsed' },
         { text: 'Ukuran', value: 'size' },
         { text: 'Tanggal', value: 'tgl_parsed' },
       ],
@@ -144,7 +144,8 @@ export default {
             area_kota: this.$gf().checkTrimText(e.area_kota),
             area_provinsi: this.$gf().checkTrimText(e.area_provinsi),
             komoditas: this.$gf().checkTrimText(e.komoditas),
-            price: this.$gf().convertToCurrency(this.$gf().checkTrimText(e.price) == '-' ? '0' : parseInt((this.$gf().checkTrimText(e.price)).split('.').join('')), 'Rp. '),
+            price: this.$gf().checkTrimText(e.price),
+            price_parsed: this.$gf().convertToCurrency(this.$gf().checkTrimText(e.price) == '-' ? '0' : parseInt((this.$gf().checkTrimText(e.price)).split('.').join('')), 'Rp. '),
             size: this.$gf().checkTrimText(e.size),
             tgl_parsed: moment(this.$gf().checkTrimText(e.tgl_parsed)).format('DD-MMM-YYYY'),
             timestamp: this.$gf().checkTrimText(e.timestamp),
@@ -155,14 +156,18 @@ export default {
       });
     },
     editItem(item) {
-
+      window.$nuxt.$cookies.set("dataEdit", item);
+      this.$gf().loadingPage().show();
+      setTimeout(() => {
+        this.$router.push('/edit');
+      }, 1000);
     },
     deleteItem(item) {
       this.deleteData = item;
       this.dialogDeleteData = true;
     },
     fixDeleteItem() {
-      this.$store.commit('setLoadingPage', true);
+      this.$gf().loadingPage().show();
       const store = new SteinStore(
         this.$api().list()
       );
@@ -173,7 +178,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$store.commit('setLoadingPage', false);
+          this.$gf().loadingPage().hide();
           this.$gf().msgHandler().show("Success", "Data Berhasil di Hapus.");
           this.getListData();
         });

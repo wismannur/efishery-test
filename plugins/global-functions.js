@@ -52,6 +52,16 @@ export default (context, inject) => {
             window.$nuxt.$store.commit('setMsgHandler', obj);
           }
         }
+      },
+      loadingPage() {
+        return {
+          show() {
+            window.$nuxt.$store.commit('setLoadingPage', true);
+          },
+          hide() {
+            window.$nuxt.$store.commit('setLoadingPage', false);
+          }
+        }
       }
     }
   }
