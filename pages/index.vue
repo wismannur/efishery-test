@@ -130,7 +130,11 @@ export default {
         {
           title: 'Vue Cookie Universal Nuxt',
           url: 'https://www.npmjs.com/package/cookie-universal-nuxt'
-        }
+        },
+        {
+          title: 'Dan beberapa custom styling oleh Saya dengan SCSS.',
+          url: '#'
+        },
       ],
       apiDev: [
         {
