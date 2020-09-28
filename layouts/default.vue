@@ -49,7 +49,9 @@
       >
         <v-icon>mdi-minus</v-icon>
       </v-btn> -->
-      <v-toolbar-title class="title-eft" v-text="title" />
+      <nuxt-link :to="'/'" class="n-link-e">
+        <v-toolbar-title class="title-eft" v-text="title" />
+      </nuxt-link>
       <v-spacer />
       <!-- <v-btn
         icon
@@ -83,12 +85,14 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    <br>
+    <br>
     <v-footer
       :absolute="!fixed"
       app
       class="footer-lyt-default"
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} - Bandung, Jawa Barat, Indonesia.</span>
     </v-footer>
     <LoadingPage />
     <no-ssr>
@@ -149,6 +153,9 @@ export default {
 }
 .drawer-lyt-default {
   max-height: calc(100% - 0px) !important;
+}
+.n-link-e {
+  text-decoration: none;
 }
 .footer-lyt-default {
   z-index: 99 !important;

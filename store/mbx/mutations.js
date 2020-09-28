@@ -12,3 +12,6 @@ export const setMsgHandler = (state, data) => {
 export const setCancelSvData = (state, data) => {
   state.cancelSvData = data;
 }
+export const setThemeNow = (state, data) => {
+  state.themeNow = data;
+}

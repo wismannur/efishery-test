@@ -1,6 +1,49 @@
 <template>
   <div class="content-index">
-    <h1>Halaman Beranda</h1>
+    <div class="top-content">
+      <h1>eFishery Test Application</h1>
+      <br>
+      <v-row
+        class="content-idx-page"
+      >
+        <v-col
+          cols="12"
+          sm="6"
+          md="4"
+          class="text-center"
+        >
+          <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="wismannur"><a class="LI-simple-link" href='https://id.linkedin.com/in/wismannur?trk=profile-badge'>Wisman Nur Abdul Kholik</a></div>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+          md="8"
+        >
+          <p>Aplikasi eFishery Test, adalah Tugas dari eFishery untuk Wisman Nur Abdul Kholik.</p>
+          <p>Aplikasi ini bisa CRUD (Create, Read, Update, Delete) untuk data list Harga Ikan di Indonesia dan data list Provinsi/Kota di Indonesia. Dan Aplikasi ini sudah di dukung dengan mode gelap dan terang, untuk kenyamanan Anda, bisa dengan klik icon lampu di sebelah kanan atas. Dan dengan tampilan responsive untuk resolusi dekstop dan mobile.</p>
+          <p>Frontend Development :</p>
+          <v-card>
+            <v-container>
+              <ul>
+                <li
+                  v-for="(fe, idx) in listFEDev"
+                  v-bind:key="idx"
+                >
+                  <nuxt-link class="n-link-e" :to="fe.url" target="_blank">
+                    {{ fe.title }}
+                  </nuxt-link>
+                </li>
+              </ul>
+            </v-container>
+          </v-card>
+          <br>
+          <p>Dan API Development dengan <nuxt-link class="n-link-e" :to="'https://steinhq.com/'" target="_blank">Steinhq</nuxt-link>.</p>
+          <p>Untuk mulai ke halaman data list harga ikan bisa dengan <nuxt-link class="n-link-e" :to="'/list-ikan'">klik disini.</nuxt-link>.</p>
+          <p>Dan untuk mulai ke halaman data list provinsi/kota bisa dengan <nuxt-link class="n-link-e" :to="'/list-provinsi-kota'">klik disini.</nuxt-link>.</p>
+          <p>Atau dengan melihat list menu yang sudah tersedia bisa dengan klik icon tiga baris di sebelah kiri atas.</p>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -54,8 +97,80 @@ export default {
             "logo": 'https://efishery-test.wismannur.vercel.app' + "/icon.png"
           }
         }
+      },
+      {
+        type: 'text/javascript',
+        src: 'https://platform.linkedin.com/badges/js/profile.js'
       }
     ]
   },
+  data() {
+    return {
+      listFEDev: [
+        {
+          title: 'VueJS',
+          url: 'https://vuejs.org/'
+        },
+        {
+          title: 'NuxtJS',
+          url: 'https://nuxtjs.org/'
+        },
+        {
+          title: 'VuetifyJS',
+          url: 'https://vuetifyjs.com/'
+        },
+        {
+          title: 'Vuex',
+          url: 'https://vuex.vuejs.org/'
+        },
+        {
+          title: 'Jquery',
+          url: 'https://www.npmjs.com/package/jquery'
+        },
+        {
+          title: 'Vue Cookie Universal Nuxt',
+          url: 'https://www.npmjs.com/package/cookie-universal-nuxt'
+        }
+      ],
+      apiDev: [
+        {
+          title: 'Steinhq',
+          url: 'https://steinhq.com/'
+        }
+      ]
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.content-index {
+  > .top-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    > h1 {
+      color: #00C58E;
+    }
+    > .content-idx-page {
+      width: 100%;
+      .n-link-e {
+        text-decoration: none;
+      }
+    }
+  }
+}
+@media (max-width: 481px) {
+  .content-index {
+    > .top-content {
+      > h1 {
+        font-size: 1.7rem;
+      }
+      > .content-idx-page {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+}
+</style>

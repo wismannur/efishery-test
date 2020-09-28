@@ -72,6 +72,19 @@ export default (context, inject) => {
             window.$nuxt.$store.commit('setCancelSvData', false);
           }
         }
+      },
+      getThemeNow() {
+        return window.$nuxt.$store.getters['getThemeNow'];
+      },
+      setThemeNow() {
+        return {
+          dark() {
+            window.$nuxt.$store.commit('setThemeNow', true);
+          },
+          light() {
+            window.$nuxt.$store.commit('setThemeNow', false);
+          }
+        }
       }
     }
   }

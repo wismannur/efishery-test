@@ -7,3 +7,6 @@ export const getMsgHandler = (state) => {
 export const getCancelSvData = (state) => {
   return state.cancelSvData;
 }
+export const getThemeNow = (state) => {
+  return state.themeNow;
+}

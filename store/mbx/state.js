@@ -7,5 +7,6 @@ export default function () {
       text: '',
     },
     cancelSvData: false,
+    themeNow: true
   }
 }

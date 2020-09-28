@@ -44,7 +44,8 @@ export default {
     toggle() {
       $('#switchCMP')[0].click();
       let themeNow = this.$vuetify.theme.isDark;
-      console.log('click btn lamp', themeNow);
+      // console.log('click btn lamp', themeNow);
+      themeNow ? this.$gf().setThemeNow().light() : this.$gf().setThemeNow().dark();
       this.fillCMP = themeNow ? this.fillLight : this.fillDark;
     },
   },
