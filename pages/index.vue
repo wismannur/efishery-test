@@ -41,6 +41,9 @@
           <p>Untuk mulai ke halaman data list harga ikan bisa dengan <nuxt-link class="n-link-e" :to="'/list-ikan'">klik disini.</nuxt-link>.</p>
           <p>Dan untuk mulai ke halaman data list provinsi/kota bisa dengan <nuxt-link class="n-link-e" :to="'/list-provinsi-kota'">klik disini.</nuxt-link>.</p>
           <p>Atau dengan melihat list menu yang sudah tersedia bisa dengan klik icon tiga baris di sebelah kiri atas.</p>
+          <p>Code Repository Github : <nuxt-link class="n-link-e" :to="'https://github.com/wismannur/efishery-test'" target="_blank">https://github.com/wismannur/efishery-test</nuxt-link> </p>
+          <p>Dan deployment Frontend dengan <nuxt-link class="n-link-e" :to="'https://vercel.com/'">Vercel</nuxt-link>.</p>
+          <p>Sekian dan Terimakasih, Salam.</p>
         </v-col>
       </v-row>
     </div>
