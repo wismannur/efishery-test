@@ -16,14 +16,14 @@
           <v-col cols="12" sm="6" md="3">
             <v-dialog
               ref="dialog"
-              v-model="modal"
+              v-model="modalDate"
               :return-value.sync="date"
               persistent
               width="290px"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="date"
+                  v-model="body.tgl_parsed"
                   label="Tanggal"
                   outlined
                   readonly
@@ -35,9 +35,10 @@
                 v-model="date"
                 scrollable
                 locale="id"
+                v-on:change="changeDate();"
               >
                 <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                <v-btn text color="primary" @click="modalDate = false">Cancel</v-btn>
                 <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
               </v-date-picker>
             </v-dialog>
@@ -141,6 +142,7 @@
 </template>
 
 <script>
+import * as moment from 'moment';
 const SteinStore = require("stein-js-client");
 
 export default {
@@ -163,7 +165,7 @@ export default {
         komoditas: [val => (val || '').length > 0 || 'Field ini tidak boleh kosong.'],
       },
       date: '',
-      modal: false,
+      modalDate: false,
       listUkuran: [],
       loadingListUkuran: true,
       listArea: [],
@@ -220,6 +222,10 @@ export default {
           return obj;
         })
       });
+    },
+    changeDate() {
+      console.log('new date ', this.date);
+      this.body.tgl_parsed = moment(this.date).locale('id').format('DD-MMMM-YYYY');
     },
     customFilter (item, queryText, itemText) {
       const textOne = item.name.toLowerCase()

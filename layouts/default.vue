@@ -6,6 +6,7 @@
       :clipped="clipped"
       fixed
       app
+      class="drawer-lyt-default"
     >
       <v-list>
         <v-list-item
@@ -85,6 +86,7 @@
     <v-footer
       :absolute="!fixed"
       app
+      class="footer-lyt-default"
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
@@ -113,7 +115,7 @@ export default {
     return {
       clipped: true,
       drawer: false,
-      fixed: true,
+      fixed: false,
       items: [
         {
           icon: 'mdi-home-flood',
@@ -144,5 +146,11 @@ export default {
 .title-eft {
   color: #00C58E;
   font-weight: 700;
+}
+.drawer-lyt-default {
+  max-height: calc(100% - 0px) !important;
+}
+.footer-lyt-default {
+  z-index: 99 !important;
 }
 </style>

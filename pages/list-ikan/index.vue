@@ -141,8 +141,6 @@ export default {
         this.desserts = data.filter((e) => {
           if ( e.uuid == null ) {
             console.log('data null ', e);
-          } else if (moment(e.tgl_parsed).format('DD-MMM-YYYY') == "Invalid date") {
-            console.log('invalid date format');
           } else {
             return e;
           }
@@ -152,9 +150,9 @@ export default {
             area_provinsi: this.$gf().checkTrimText(e.area_provinsi),
             komoditas: this.$gf().checkTrimText(e.komoditas),
             price: this.$gf().checkTrimText(e.price),
-            price_parsed: this.$gf().convertToCurrency(this.$gf().checkTrimText(e.price) == '-' ? '0' : parseInt((this.$gf().checkTrimText(e.price)).split('.').join('')), 'Rp. '),
+            price_parsed: this.$gf().convertToCurrency(this.$gf().checkTrimText(e.price) == '-' ? 0 : parseInt((this.$gf().checkTrimText(e.price)).split('.').join('')), 'Rp. '),
             size: this.$gf().checkTrimText(e.size),
-            tgl_parsed: moment(this.$gf().checkTrimText(e.tgl_parsed)).format('DD-MMM-YYYY'),
+            tgl_parsed: this.$gf().checkTrimText(e.tgl_parsed) === '-' ? '-' : moment(this.$gf().checkTrimText(e.tgl_parsed)).locale('id').format('DD-MMMM-YYYY'),
             timestamp: this.$gf().checkTrimText(e.timestamp),
             uuid: this.$gf().checkTrimText(e.uuid),
           };
