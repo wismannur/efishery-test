@@ -29,20 +29,20 @@
                   v-for="(fe, idx) in listFEDev"
                   v-bind:key="idx"
                 >
-                  <nuxt-link class="n-link-e" :to="fe.url" target="_blank">
+                  <a class="n-link-e" :href="fe.url" target="_blank">
                     {{ fe.title }}
-                  </nuxt-link>
+                  </a>
                 </li>
               </ul>
             </v-container>
           </v-card>
           <br>
-          <p>Dan API Development dengan <nuxt-link class="n-link-e" :to="'https://steinhq.com/'" target="_blank">Steinhq</nuxt-link>.</p>
-          <p>Untuk mulai ke halaman data list harga ikan bisa dengan <nuxt-link class="n-link-e" :to="'/list-ikan'">klik disini.</nuxt-link>.</p>
-          <p>Dan untuk mulai ke halaman data list provinsi/kota bisa dengan <nuxt-link class="n-link-e" :to="'/list-provinsi-kota'">klik disini.</nuxt-link>.</p>
+          <p>Dan API Development dengan <a class="n-link-e" :href="'https://steinhq.com/'" target="_blank">Steinhq</a>.</p>
+          <p>Untuk mulai ke halaman data list harga ikan bisa dengan <a class="n-link-e" :href="'/list-ikan'">klik disini.</a>.</p>
+          <p>Dan untuk mulai ke halaman data list provinsi/kota bisa dengan <a class="n-link-e" :href="'/list-provinsi-kota'">klik disini.</a>.</p>
           <p>Atau dengan melihat list menu yang sudah tersedia bisa dengan klik icon tiga baris di sebelah kiri atas.</p>
-          <p>Code Repository Github : <nuxt-link class="n-link-e" :to="'https://github.com/wismannur/efishery-test'" target="_blank">https://github.com/wismannur/efishery-test</nuxt-link> </p>
-          <p>Dan deployment Frontend dengan <nuxt-link class="n-link-e" :to="'https://vercel.com/'">Vercel</nuxt-link>.</p>
+          <p>Code Repository Github : <a class="n-link-e" :href="'https://github.com/wismannur/efishery-test'" target="_blank">https://github.com/wismannur/efishery-test</a> </p>
+          <p>Dan deployment Frontend dengan <a class="n-link-e" :href="'https://vercel.com/'">Vercel</a>.</p>
           <p>Sekian dan Terimakasih, Salam.</p>
         </v-col>
       </v-row>
