@@ -162,7 +162,7 @@ export default {
       );
 
       store.read("").then((data) => {
-        console.log('SteinStore Area ', data);
+        // console.log('SteinStore Area ', data);
         this.loadingListProvinsi = false;
         this.listArea = data;
         this.listProvinsi = data.filter((e, index, self) =>
@@ -202,7 +202,7 @@ export default {
     saveData() {
       this.$gf().loadingPage().show();
       this.body.tgl_parsed = this.date;
-      console.log('data body ', this.body);
+      // console.log('data body ', this.body);
 
       const store = new SteinStore(
         this.$api().optionArea()
@@ -221,7 +221,7 @@ export default {
         this.$gf().loadingPage().hide();
         this.dialogSaveData = true;
         window.$nuxt.$cookies.remove('dataEditIkan');
-        console.log('Success Updated Data' + res);
+        // console.log('Success Updated Data' + res);
       });
     }
   },

@@ -142,7 +142,7 @@ export default {
       );
 
       store.read("").then((data) => {
-        console.log('SteinStore Area ', data);
+        // console.log('SteinStore Area ', data);
         this.loadingListProvinsi = false;
         this.listArea = data;
         this.listProvinsi = data.filter((e, index, self) =>
@@ -182,7 +182,7 @@ export default {
     saveData() {
       this.$gf().loadingPage().show();
       this.body.tgl_parsed = this.date;
-      console.log('data body ', this.body);
+      // console.log('data body ', this.body);
 
       const store = new SteinStore(
         this.$api().optionArea()
@@ -192,7 +192,7 @@ export default {
       .then((res) => {
         this.$gf().loadingPage().hide();
         this.dialogSaveData = true;
-        console.log('Success Saved Data' + res);
+        // console.log('Success Saved Data' + res);
       });
     }
   },

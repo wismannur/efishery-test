@@ -139,7 +139,7 @@ export default {
         this.loadingListData = false;
         this.desserts = data.filter((e) => {
           if ( e.uuid == null ) {
-            console.log('data null ', e);
+            // console.log('data null ', e);
           } else {
             return e;
           }
@@ -181,7 +181,7 @@ export default {
           search: { uuid: this.deleteData.uuid }
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.$gf().loadingPage().hide();
           this.$gf().msgHandler().show("Success", "Data Berhasil di Hapus.");
           this.getListData();

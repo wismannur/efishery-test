@@ -188,7 +188,7 @@ export default {
       );
 
       store.read("").then((data) => {
-        console.log('SteinStore Ukuran ', data);
+        // console.log('SteinStore Ukuran ', data);
         this.loadingListUkuran = false;
         this.listUkuran = data.map((e, i) => {
           let obj = {
@@ -206,7 +206,7 @@ export default {
       );
 
       store.read("").then((data) => {
-        console.log('SteinStore Area ', data);
+        // console.log('SteinStore Area ', data);
         this.loadingListProvinsi = false;
         this.listArea = data;
         this.listProvinsi = data.filter((e, index, self) =>
@@ -224,7 +224,7 @@ export default {
       });
     },
     changeDate() {
-      console.log('new date ', this.date);
+      // console.log('new date ', this.date);
       this.body.tgl_parsed = moment(this.date).locale('id').format('DD-MMMM-YYYY');
     },
     customFilter (item, queryText, itemText) {
@@ -236,7 +236,7 @@ export default {
         textTwo.indexOf(searchText) > -1
     },
     changeKota() {
-      console.log('body.area_provinsi ', this.body.area_provinsi);
+      // console.log('body.area_provinsi ', this.body.area_provinsi);
       this.loadingListKota = true;
       this.disabledKota = true;
       this.body.area_kota = "";
@@ -250,7 +250,7 @@ export default {
           name: e.city,
           abbr: e.city,
         };
-        console.log('obj ', obj);
+        // console.log('obj ', obj);
         return obj;
       });
       setTimeout(() => {
@@ -277,7 +277,7 @@ export default {
     saveData() {
       this.$gf().loadingPage().show();
       this.body.tgl_parsed = this.date;
-      console.log('data body ', this.body);
+      // console.log('data body ', this.body);
 
       const store = new SteinStore(
         this.$api().list()
@@ -287,7 +287,7 @@ export default {
       .then((res) => {
         this.$gf().loadingPage().hide();
         this.dialogSaveData = true;
-        console.log('Success Saved Data' + res);
+        // console.log('Success Saved Data' + res);
       });
     }
   },

@@ -106,12 +106,6 @@ export default {
       search: '',
       loadingListData: true,
       headers: [
-        // {
-        //   text: 'Dessert (100g serving)',
-        //   align: 'start',
-        //   sortable: false,
-        //   value: 'name',
-        // },
         {
           text: 'Actions',
           align: 'start',
@@ -177,7 +171,7 @@ export default {
           search: { province: data.province, city: data.city }
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.$gf().loadingPage().hide();
           this.$gf().msgHandler().show("Success", "Data Berhasil di Hapus.");
           this.getListData();

@@ -204,7 +204,7 @@ export default {
       );
 
       store.read("").then((data) => {
-        console.log('SteinStore Ukuran ', data);
+        // console.log('SteinStore Ukuran ', data);
         this.loadingListUkuran = false;
         this.listUkuran = data.map((e, i) => {
           let obj = {
@@ -222,7 +222,7 @@ export default {
       );
 
       store.read("").then((data) => {
-        console.log('SteinStore Area ', data);
+        // console.log('SteinStore Area ', data);
         this.loadingListProvinsi = false;
         this.listArea = data;
         this.listProvinsi = data.filter((e, index, self) =>
@@ -240,7 +240,7 @@ export default {
         setTimeout(() => {
           this.handleKota();
           this.body.area_kota = this.dataEditIkan.area_kota;
-          console.log('data edit ', this.dataEditIkan)
+          // console.log('data edit ', this.dataEditIkan)
         }, 500);
       });
     },
@@ -253,7 +253,7 @@ export default {
         textTwo.indexOf(searchText) > -1
     },
     changeDate() {
-      console.log('new date ', this.date);
+      // console.log('new date ', this.date);
       this.body.tgl_parsed = moment(this.date).locale('id').format('DD-MMMM-YYYY');
     },
     handleKota() {
@@ -267,7 +267,7 @@ export default {
           name: e.city,
           abbr: e.city,
         };
-        console.log('obj ', obj);
+        // console.log('obj ', obj);
         return obj;
       });
       setTimeout(() => {
@@ -276,7 +276,7 @@ export default {
       })
     },
     changeKota() {
-      console.log('body.area_provinsi ', this.body.area_provinsi);
+      // console.log('body.area_provinsi ', this.body.area_provinsi);
       this.loadingListKota = true;
       this.disabledKota = true;
       this.body.area_kota = "";
@@ -299,7 +299,7 @@ export default {
       this.$gf().cancelSvData().show();
     },
     saveData() {
-      console.log('data body ', this.body);
+      // console.log('data body ', this.body);
       this.$gf().loadingPage().show();
       this.body.tgl_parsed = this.date;
 
@@ -315,7 +315,7 @@ export default {
         this.$gf().loadingPage().hide();
         this.dialogSaveData = true;
         window.$nuxt.$cookies.remove('dataEditIkan');
-        console.log('Success Updated Data' + res);
+        // console.log('Success Updated Data' + res);
       });
     }
   },
