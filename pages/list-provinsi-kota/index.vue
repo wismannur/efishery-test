@@ -112,7 +112,12 @@ export default {
         //   sortable: false,
         //   value: 'name',
         // },
-        { text: 'Actions', value: 'actions' },
+        {
+          text: 'Actions',
+          align: 'start',
+          sortable: false,
+          value: 'actions'
+        },
         { text: 'Provinsi', value: 'province' },
         { text: 'Kota', value: 'city' },
       ],

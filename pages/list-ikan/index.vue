@@ -105,13 +105,12 @@ export default {
       search: '',
       loadingListData: true,
       headers: [
-        // {
-        //   text: 'Dessert (100g serving)',
-        //   align: 'start',
-        //   sortable: false,
-        //   value: 'name',
-        // },
-        { text: 'Actions', value: 'actions' },
+        {
+          text: 'Actions',
+          value: 'actions',
+          align: 'start',
+          sortable: false,
+        },
         { text: 'Komoditas', value: 'komoditas' },
         { text: 'Provinsi', value: 'area_provinsi' },
         { text: 'Kota', value: 'area_kota' },
